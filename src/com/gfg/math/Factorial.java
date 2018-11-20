@@ -20,6 +20,7 @@ public class Factorial {
             n= Integer.parseInt(tk.nextToken());
             sb.append(factorial(n)).append("\n");
         }
+
         System.out.print(sb);
     }
 

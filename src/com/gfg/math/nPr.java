@@ -22,6 +22,7 @@ public class nPr {
             b= Long.parseLong(tk.nextToken());
             sb.append(factorial(a,a-b)).append("\n");
         }
+
         System.out.print(sb);
     }
 

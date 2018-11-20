@@ -38,6 +38,7 @@ public class GCD_of_Array {
             }
             sb.append(result).append("\n");
         }
+
         System.out.print(sb);
     }
     static long GCD(long a, long b){
