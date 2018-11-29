@@ -1,6 +1,28 @@
 package com.gfg.math;
 
+/*
+Write a program to reverse digits of a number N.
 
+Input:
+The first line of input contains an integer T, denoting the number of test cases.
+T testcases follow. Each test case contains an integer N.
+
+Output:
+For each test case, print the reverse digits of number N .
+
+Constraints:
+1 ≤ T ≤ 100
+1 ≤ N ≤ 109
+
+Example:
+Input:
+2
+200
+122
+Output:
+2
+221
+ */
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;

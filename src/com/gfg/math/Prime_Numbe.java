@@ -1,5 +1,27 @@
 package com.gfg.math;
 
+/*
+For a given number N check if it is prime or not. A prime number is a number which is only divisible
+by 1 and itself.
+
+Input:
+First line contains an integer, the number of test cases 'T'. T testcases follow. Each test case should
+ contain a positive integer N.
+
+Output:
+For each testcase, in a new line, print "Yes" if it is a prime number else print "No".
+
+Constraints:
+1 <= T <= 30
+1 <= N <= 100
+
+Example:
+Input:
+1
+5
+Output:
+Yes
+ */
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;

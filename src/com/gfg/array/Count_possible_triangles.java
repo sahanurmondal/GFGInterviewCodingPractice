@@ -1,5 +1,32 @@
 package com.gfg.array;
+/*
+Given an unsorted array of positive integers. Find the number of triangles that can be formed
+with three different array elements as lengths of three sides of triangles.
 
+Input:
+The first line of the input contains T denoting the number of testcases. First line of test case
+is the length of array N and second line of test case are its elements.
+
+Output:
+Number of possible triangles are displayed to the user.
+
+Constraints:
+1 <= T <= 200
+3 <= N <= 107
+1 <= arr[i] <= 103
+
+Example:
+Input:
+2
+3
+3 5 4
+5
+6 4 9 7 8
+
+Output:
+1
+10
+ */
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
