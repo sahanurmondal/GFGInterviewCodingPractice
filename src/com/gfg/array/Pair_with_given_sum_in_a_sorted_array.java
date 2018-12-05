@@ -40,6 +40,8 @@ Testcase2: We find 3 such pairs that sum to 8 (1,7) (2,6) (3,5)
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class Pair_with_given_sum_in_a_sorted_array {
@@ -47,7 +49,7 @@ public class Pair_with_given_sum_in_a_sorted_array {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringBuilder sb = new StringBuilder();
         int t = Integer.parseInt(br.readLine());
-        int n=0;
+        int n=0,k=0;
         // long x=0,y=0;
         StringTokenizer tk;
         int[] arr;
@@ -59,8 +61,25 @@ public class Pair_with_given_sum_in_a_sorted_array {
             for (int i = 0; i <n ; i++) {
                 arr[i]=Integer.parseInt(tk.nextToken());
             }
+            k=Integer.parseInt(br.readLine());
+            Arrays.sort(arr);
+            int l=0,h=n-1;
+            int flag=0;
+            while(l<h){
+                if(arr[l]+arr[h]==k){
+                    sb.append(arr[l]+" "+arr[h]+" "+k).append("\n");
+                    flag=1;
+                    l++;h--;
+                }
+                else if(arr[l]+arr[h]>k)
+                    h--;
+                else if(arr[l]+arr[h]<k)
+                    l++;
+            }
+            if(flag==0)
+                sb.append("-1");
 
-            sb.append("").append("\n");
+            sb.append("\n");
         }
         System.out.print(sb);
     }
