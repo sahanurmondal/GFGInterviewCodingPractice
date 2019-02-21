@@ -56,8 +56,21 @@ public class Handshakes {
             n=Integer.parseInt(br.readLine());
 
             //printPattern(n);
-            System.out.println();
+            System.out.println(shakeHands(n/2));
         }
         //  System.out.print(sb);
+    }
+    private static int shakeHands(int n){
+        int sum=0;
+        if(n==0)
+            return 1;
+        else {
+            //int k=n;
+            for (int i = 1; i <=n ; i++) {
+                sum += shakeHands(n-i)*shakeHands(i-1);
+            }
+
+        }
+        return sum;
     }
 }
