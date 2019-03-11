@@ -61,7 +61,7 @@ public class Maximum_Index {
             arr=new int[n];
             tk = new StringTokenizer(br.readLine());
             for (int k = 0; k < n; k++) {
-                arr[k]=Integer.parseInt(tk.nextToken());;
+                arr[k]=Integer.parseInt(tk.nextToken());
             }
             if(n!=1){
                 i=0;
