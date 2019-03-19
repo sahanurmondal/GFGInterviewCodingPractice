@@ -62,36 +62,37 @@ public class K_th_element_of_two_sorted_Arrays {
                 arr2[i]=Integer.parseInt(tk.nextToken());
             }
 
-            sb.append(kth(arr1,m,arr2,n,k)).append("\n");
+            sb.append(kth(arr1,m,arr2,n,k,0,0)).append("\n");
         }
         System.out.print(sb);
     }
-    static int kth(int arr1[], int m, int arr2[], int n, int k)
+    static int kth(int arr1[], int m, int arr2[], int n, int k,int startIndex1,int startIndex2)
     {
 
         if (k > (m+n) || k < 1) return -1;
 
         // let m <= n
-        if (m > n) return kth(arr2, n, arr1, m, k);
+        if (m > n) return kth(arr2, n, arr1, m, k,startIndex2,startIndex1);
 
         // if arr1 is empty returning k-th element of arr2
-        if (m == 0) return arr2[k - 1];
+        if (m == 0) return arr2[startIndex2+k - 1];
         //if (n == 0) return arr1[k - 1];
         // if k = 1 return minimum of first two elements of both arrays
-        if (k == 1) {
-            int index = Math.min(m,n);
-            return Math.min(arr1[index], arr2[index]);
-        }
+        if (k == 1) return Math.min(arr1[startIndex1], arr2[startIndex2]);
 
         // now the divide and conquer part
         int i = Math.min(m, k / 2), j = Math.min(n, k / 2);
 
-        if (arr1[i - 1] > arr2[j - 1] )
+        if (arr1[i - 1+startIndex1] > arr2[j - 1+startIndex2] ) {
             // Now we need to find only k-j th element since we have found out the lowest j
-            return kth(arr1, m, arr2 , n - j, k - j);
-        else
+            startIndex2 += j;
+            return kth(arr1, m, arr2, n - j, k - j,startIndex1,startIndex2);
+        }
+        else {
             // Now we need to find only k-i th element since we have found out the lowest i
-            return kth(arr1, m - i, arr2, n, k - i);
+            startIndex1 += i;
+            return kth(arr1, m - i, arr2, n, k - i,startIndex1,startIndex2);
+        }
     }
 }
 
