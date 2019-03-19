@@ -78,7 +78,10 @@ public class K_th_element_of_two_sorted_Arrays {
         if (m == 0) return arr2[k - 1];
         //if (n == 0) return arr1[k - 1];
         // if k = 1 return minimum of first two elements of both arrays
-        if (k == 1) return Math.min(arr1[0], arr2[0]);
+        if (k == 1) {
+            int index = Math.min(m,n);
+            return Math.min(arr1[index], arr2[index]);
+        }
 
         // now the divide and conquer part
         int i = Math.min(m, k / 2), j = Math.min(n, k / 2);

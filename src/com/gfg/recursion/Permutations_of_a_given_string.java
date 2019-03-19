@@ -22,9 +22,12 @@ Output:
 ABC ACB BAC BCA CAB CBA
 ABGS ABSG AGBS AGSB ASBG ASGB BAGS BASG BGAS BGSA BSAG BSGA GABS GASB GBAS GBSA GSAB GSBA SABG SAGB SBAG SBGA SGAB SGBA
  */
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Permutations_of_a_given_string {
     public static void main(String[] args) throws IOException {
@@ -39,22 +42,46 @@ public class Permutations_of_a_given_string {
             while(t-->0)
             {
                 s = br.readLine();
-
-                permutation(s);
+                Set<String> uniqueStrings = new HashSet<>();
+                permutation(s,uniqueStrings);
+                //permute(s.toCharArray(), 0, s.length()-1);
             }
             System.out.println();
         }
 
-    public static void permutation(String str) {
-        permutation("", str);
+    public static void permutation(String str,Set<String> uniqueStrings) {
+        permutation("", str,uniqueStrings);
     }
 
-    private static void permutation(String prefix, String str) {
+    private static void permutation(String prefix, String str,Set<String> set) {
         int n = str.length();
-        if (n == 0) System.out.print(prefix+" ");
-        else {
+        if (n == 0) {
+            if(!set.contains(prefix))
+            {
+                System.out.print(prefix +" ");
+                set.add(prefix);
+            }
+        } else {
             for (int i = 0; i < n; i++)
-                permutation(prefix + str.charAt(i), str.substring(0, i) + str.substring(i+1, n));
+                permutation(prefix + str.charAt(i), str.substring(0, i) + str.substring(i+1),set);
         }
+    }
+
+    public static void permute(char[] ary, int startIndex, int endIndex) {
+        if(startIndex == endIndex){
+            System.out.print(String.valueOf(ary)+" ");
+        }else{
+            for(int i=startIndex;i<=endIndex;i++) {
+                swap(ary, startIndex, i );
+                permute(ary, startIndex+1, endIndex);
+                swap(ary, startIndex, i );
+            }
+        }
+    }
+
+    public static void swap(char[] ary, int x, int y) {
+        char temp = ary[x];
+        ary[x] = ary[y];
+        ary[y] = temp;
     }
 }
