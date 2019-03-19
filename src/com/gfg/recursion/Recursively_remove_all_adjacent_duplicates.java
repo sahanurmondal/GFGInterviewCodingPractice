@@ -44,46 +44,41 @@ public class Recursively_remove_all_adjacent_duplicates {
         {
             s = br.readLine();
 
-            sb.append(removeDuplicate(s)).append("\n");
+            sb.append(removeDuplicateUtil(s)).append("\n");
         }
         System.out.print(sb);
     }
 
     private static String removeDuplicate(String input){
-        String res="";
         if(input == null || input.length()<=1)
             return input;
         else{
             int i = 0;
             boolean flag = false;
-            while (input.charAt(i) == input.charAt(i+1)) {
+            while (i <input.length()-1 && input.charAt(i) == input.charAt(i+1)) {
                 flag = true;
                 i++;
             }
-            if(!flag) {
-                res += input.charAt(0);
-                res += removeDuplicate(input.substring(i + 1));
-            }
+            if(!flag)
+                return input.charAt(0)+ removeDuplicate(input.substring(i + 1));
+
             else
-                res +=  removeDuplicate(input.substring(i+1));
-            flag = true;
-            for (int j = 0; j <res.length()-1 ; j++) {
-                if(res.charAt(j) == res.charAt(j+1)){
-                    flag = false;
-                    break;
-                }
-            }
-            if (flag)
-                return res;
-            else
-                return removeDuplicate(res);
+                return removeDuplicate(input.substring(i + 1));
         }
     }
-    /*private static String removeDuplicateUtil(char ch,String input){
-
-        if(ch == '\0'){
-
+    private static String removeDuplicateUtil(String input){
+        String result = removeDuplicate(input);
+        boolean flag = true;
+        for (int j = 0; j <result.length()-1 ; j++) {
+            if(result.charAt(j) == result.charAt(j+1)){
+                flag = false;
+                break;
+            }
         }
-    }*/
+        if(flag)
+            return result;
+        else
+            return removeDuplicateUtil(result);
+    }
 
 }
