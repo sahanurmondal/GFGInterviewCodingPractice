@@ -3,6 +3,7 @@ package com.gfg.stack;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Stack;
 import java.util.StringTokenizer;
 
 /*
@@ -55,18 +56,73 @@ public class The_Celebrity_Problem {
         int n=0;
         // long x=0,y=0;
         StringTokenizer tk;
-        int[] arr;
+        int[][] arr;
         while(t-->0)
         {
             n=Integer.parseInt(br.readLine());
-            arr= new int[n];
+            arr= new int[n][n];
             tk = new StringTokenizer(br.readLine());
             for (int i = 0; i <n ; i++) {
-                arr[i]=Integer.parseInt(tk.nextToken());
+                for (int j = 0; j < n; j++) {
+                    arr[i][j]=Integer.parseInt(tk.nextToken());
+                }
             }
 
-            sb.append("").append("\n");
+            sb.append(findCelebrity(arr,n)).append("\n");
         }
         System.out.print(sb);
+    }
+    private static boolean knows(int[][] arr,int a, int b)
+    {
+        return  (arr[a][b] == 1) ;
+    }
+
+    private static int findCelebrity(int[][] arr, int n)
+    {
+        Stack<Integer> st = new Stack<>();
+        int c;
+
+        // Step 1 :Push everybody
+        // onto stack
+        for (int i = 0; i < n; i++)
+        {
+            st.push(i);
+        }
+
+        while (st.size() > 1)
+        {
+            // Step 2 :Pop off top
+            // two persons from the
+            // stack, discard one
+            // person based on return
+            // status of knows(A, B).
+            int a = st.pop();
+            int b = st.pop();
+
+            // Step 3 : Push the
+            // remained person onto stack.
+            if (knows(arr,a, b))
+            {
+                st.push(b);
+            }
+
+            else
+                st.push(a);
+        }
+
+        c = st.pop();
+
+        // Step 5 : Check if the last
+        // person is celebrity or not
+        for (int i = 0; i < n; i++)
+        {
+            // If any person doesn't
+            //  know 'c' or 'a' doesn't
+            // know any person, return -1
+            if (i != c && (knows(arr,c, i) ||
+                    !knows(arr,i, c)))
+                return -1;
+        }
+        return c;
     }
 }
