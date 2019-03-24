@@ -43,11 +43,10 @@ public class Longest_Common_Subsequence {
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             StringBuilder sb = new StringBuilder();
             int t = Integer.parseInt(br.readLine());
-            String  s,a,b;
+            String  a,b;
             while(t-->0)
             {
-                int[] arr1=new int[256],arr2=new int[256];
-                s=br.readLine();
+                br.readLine();
                 a=br.readLine();
                 b=br.readLine();
                 int n=a.length(),m=b.length();
