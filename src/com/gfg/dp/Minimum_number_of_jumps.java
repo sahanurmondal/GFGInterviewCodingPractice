@@ -51,27 +51,28 @@ public class Minimum_number_of_jumps {
             for (int i = 0; i <n ; i++) {
                 arr[i]=Integer.parseInt(tk.nextToken());
             }
-
-            if(arr[0] == 0)
-                sb.append(-1);
-            else
-            {
-                int curEnd = 0, jp = 0, maxx = 0;
-                for (int i = 0; i < n - 1; i++) {
-                    if (arr[i] == 0) continue;
-                    maxx = Math.max(maxx, i + arr[i]);
-                    if (curEnd == i) {
-                        jp++;
-                        curEnd = maxx;
-
-                    }
-                }
-                if (maxx < n - 1) sb.append(-1);
-                else
-                sb.append(jp);
-            }
-            sb.append("\n");
+            System.out.print(minJumps(arr));
         }
-        System.out.print(sb);
+    }
+
+    static int minJumps(int[] arr){
+        if(arr.length == 1) return 0;
+
+        if(arr[0] == 0) return -1;
+
+        int cur = 0, max = 0, jp = 0;
+
+        for(int i = 0;i < arr.length -1; i++){
+            if(arr[i] == 0 && i != cur) continue;
+
+            max = Math.max(max,i + arr[i]);
+            if(i == cur){
+                jp++;
+                cur = max;
+            }
+        }
+
+        if(max < arr.length-1) return -1;
+        return jp;
     }
 }
